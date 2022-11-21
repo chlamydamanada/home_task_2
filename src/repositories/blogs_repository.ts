@@ -34,7 +34,7 @@ export const blogsRepository = {
     },
     createBlog(name : any , description: any, websiteUrl: any){
         const newBlog = {
-            id: (blogs.length + 1).toString(),
+            id: new Date().toISOString(),
             name: name,
             description: description,
             websiteUrl: websiteUrl

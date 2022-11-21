@@ -38,12 +38,12 @@ export const postsRepository = {
     },
     createPost(title:string, shortDescription:string, content:string, blogId:string, blogName:string){
         const newPost: any = {
-            id: (posts.length + 1).toString(),
+            id: new Date().toISOString(),
             title: title,
             shortDescription: shortDescription,
             content: content,
             blogId: blogId,
-            blogName: blogName
+            blogName: blogName || "string"
         }
         posts.push(newPost)
         return newPost;
@@ -55,7 +55,7 @@ export const postsRepository = {
             newPost.shortDescription = shortDescription,
             newPost.content = content,
             newPost.blogId = blogId,
-            newPost.blogName = blogName
+            newPost.blogName = blogName || "string"
             return true;
         } else {
             return false;
