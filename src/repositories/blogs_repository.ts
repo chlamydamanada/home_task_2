@@ -1,4 +1,4 @@
- const blogs = [
+ let blogs = [
     {   id: '1',
         name: 'Nick',
         description: 'valid string',
@@ -22,16 +22,13 @@ export const blogsRepository = {
         let blog = blogs.find(b => b.id === id)
         return blog;
     },
-    deleteBlog(id: string){
-        for (let i = 0; i < blogs.length; i++){
-            if (+blogs[i].id === +id){
-                blogs.splice(i,1)
-                return true;
-            } else {
-                return false;
-            }
-        }
-    },
+    deleteBlog(id: string) {
+        const deletedBlog = blogs.filter(blog => {
+            return blog.id !== id
+        })
+        blogs = deletedBlog
+        return blogs
+        },
     createBlog(name : any , description: any, websiteUrl: any){
         const newBlog = {
             id: new Date().toISOString(),
