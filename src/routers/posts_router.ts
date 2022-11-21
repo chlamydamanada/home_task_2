@@ -7,7 +7,7 @@ import {basAuthMiddleware} from "./blogs_router";
 
 export const postsRouter = Router ();
 
-const blogIdValidation = body ('blogId').isString().trim().isLength({min:1}).withMessage("blogId is not correct").
+const blogIdValidation = body ('blogId').isString().trim().isLength({min:1}).withMessage("blogId is not correct")
 const titleValidation = body('title').isString().trim().isLength({min:1, max:30}).withMessage("title is not correct")
 const shortDesValidation = body('shortDescription').isString().trim().isLength({min:1, max:100}).withMessage("shortDescription is not correct")
 const contentValidation = body('content').isString().trim().isLength({min:1, max:1000}).withMessage("content is not correct")
