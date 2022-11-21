@@ -36,26 +36,26 @@ export const postsRepository = {
             }
         }
     },
-    createPost(title:string, shortDescription:string, content:string, blogId:string){
+    createPost(title:string, shortDescription:string, content:string, blogId:string, blogName:string){
         const newPost: any = {
             id: (posts.length + 1).toString(),
             title: title,
             shortDescription: shortDescription,
             content: content,
             blogId: blogId,
-            blogName: "string"
+            blogName: blogName
         }
         posts.push(newPost)
         return newPost;
     },
-    updatePost(id:string, title:string, shortDescription:string, content:string, blogId:string){
+    updatePost(id:string, title:string, shortDescription:string, content:string, blogId:string, blogName:string){
         const newPost = posts.find(p => p.id === id)
         if (newPost){
             newPost.title = title,
             newPost.shortDescription = shortDescription,
             newPost.content = content,
             newPost.blogId = blogId,
-            newPost.blogName = '5'
+            newPost.blogName = blogName
             return true;
         } else {
             return false;
