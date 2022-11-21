@@ -14,6 +14,9 @@ app.use('/blogs',blogsRouter)
 app.use('/posts', postsRouter)
 app.use('/all-data', allDataRouter)
 
+app.get('/', (req:Request, res:Response) => {
+    res.send(`Hello user`)
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
