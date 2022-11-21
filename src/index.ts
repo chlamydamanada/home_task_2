@@ -12,7 +12,7 @@ export const parserMiddleware = bodyParser({})
 app.use(parserMiddleware)
 app.use('/blogs',blogsRouter)
 app.use('/posts', postsRouter)
-app.use('/all-data', allDataRouter)
+app.use('/testing/all-data', allDataRouter)
 
 app.get('/', (req:Request, res:Response) => {
     res.send(`Hello user`)
