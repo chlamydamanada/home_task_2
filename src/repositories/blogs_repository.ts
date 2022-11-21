@@ -24,7 +24,7 @@ export const blogsRepository = {
     },
     deleteBlog(id: string){
         for (let i = 0; i < blogs.length; i++){
-            if (blogs[i].id === id){
+            if (+blogs[i].id === +id){
                 blogs.splice(i,1)
                 return true;
             } else {
