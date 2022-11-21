@@ -17,14 +17,11 @@ export const postsRepository = {
     return post;
   },
   deletePost(id: string) {
-    for (let i = 0; i < posts.length; i++) {
-      if (posts[i].id === id) {
-        posts.splice(i, 1);
-        return true;
-      } else {
-        return false;
-      }
-    }
+    const deletedPost = posts.filter((post) => {
+      return post.id !== id;
+    });
+    posts = deletedPost;
+    return posts;
   },
   createPost(
     title: string,
@@ -39,30 +36,24 @@ export const postsRepository = {
       shortDescription: shortDescription,
       content: content,
       blogId: blogId,
-      blogName: blogName || "string",
+      blogName: blogName,
     };
     posts.push(newPost);
     return newPost;
   },
   updatePost(
-    id: string,
+    newPost: IPosts,
+
     title: string,
     shortDescription: string,
     content: string,
-    blogId: string,
-    blogName: string
+    blogId: string
   ) {
-    const newPost = posts.find((p) => p.id === id);
-    if (newPost) {
-      (newPost.title = title),
-        (newPost.shortDescription = shortDescription),
-        (newPost.content = content),
-        (newPost.blogId = blogId),
-        (newPost.blogName = blogName || "string");
-      return true;
-    } else {
-      return false;
-    }
+    newPost.title = title;
+    newPost.shortDescription = shortDescription;
+    newPost.content = content;
+    newPost.blogId = blogId;
+    return newPost;
   },
   deleteAllPost() {
     posts.splice(0, posts.length);

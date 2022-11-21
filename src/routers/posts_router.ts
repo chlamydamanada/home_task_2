@@ -68,11 +68,12 @@ postsRouter.get("/:id", (req: Request, res: Response) => {
   }
 });
 postsRouter.delete("/:id", basAuthMiddleware, (req: Request, res: Response) => {
-  const isDel = postsRepository.deletePost(req.params.id);
-  if (isDel) {
-    res.sendStatus(204);
-  } else {
+  let isPost = postsRepository.findPost(req.params.id);
+  if (!isPost) {
     res.sendStatus(404);
+  } else {
+    let isDel = postsRepository.deletePost(req.params.id);
+    res.sendStatus(204);
   }
 });
 postsRouter.post(
@@ -104,18 +105,18 @@ postsRouter.put(
   contentValidation,
   inputValMiddleware,
   (req: Request, res: Response) => {
-    const isUpD = postsRepository.updatePost(
-      req.params.id,
-      req.body.title,
-      req.body.shortDescription,
-      req.body.content,
-      req.body.blogId,
-      req.body.blogName
-    );
-    if (isUpD) {
-      res.send(204);
+    const isPost = postsRepository.findPost(req.params.id);
+    if (!isPost) {
+      res.sendStatus(404);
     } else {
-      res.send(404);
+      const isUpD = postsRepository.updatePost(
+        isPost,
+        req.body.title,
+        req.body.shortDescription,
+        req.body.content,
+        req.body.blogId
+      );
+      return res.sendStatus(204);
     }
   }
 );
